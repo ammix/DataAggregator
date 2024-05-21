@@ -1,0 +1,6 @@
+@DataAggregatorService_HostAddress = http://localhost:5298
+
+GET {{DataAggregatorService_HostAddress}}/addNotifications/
+Accept: application/json
+
+###
