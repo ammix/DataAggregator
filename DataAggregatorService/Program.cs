@@ -6,6 +6,8 @@ namespace DataAggregatorService
     {
         public static void Main(string[] args)
         {
+            // Add DI
+
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddEndpointsApiExplorer();
