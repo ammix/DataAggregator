@@ -2,14 +2,14 @@
 
 namespace NotificationManger;
 
-public class CustomersOfTenant2 : CustomersOfTenant
+public class Organisation2 : Organisation
 {
-    public CustomersOfTenant2(AggregatorDbContext dbContext) : base(dbContext)
+    public Organisation2(AggregatorDbContext dbContext) : base(dbContext)
     { }
 
     protected override int OrganisationId => 2;
 
-    protected override IQueryable<NotificationsBroker> GetQuery(int year, int month, int threshold)
+    public override IQueryable<NotificationsBroker> GetSilentCustomers(int year, int month, int threshold)
     {
         return dbContext.Customer2s
             .GroupJoin(
@@ -32,7 +32,8 @@ public class CustomersOfTenant2 : CustomersOfTenant
             {
                 Email = g.Key.Email,
                 FirstName = g.Key.GivenName,
-                LastName = g.Key.FamilyName
+                LastName = g.Key.FamilyName,
+                FinHash = ClientCodeGenerator.GenerateCode(g.Key.GivenName, g.Key.FamilyName, organisationName)
             })
             .Distinct();
     }

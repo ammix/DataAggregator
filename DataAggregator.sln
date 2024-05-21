@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAggregatorService", "DataAggregatorService\DataAggregatorService.csproj", "{ADD9EAB0-4D81-4C84-BEBE-3013A3C939C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAggregatorService", "DataAggregatorService\DataAggregatorService.csproj", "{ADD9EAB0-4D81-4C84-BEBE-3013A3C939C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationManager", "NotificationManager\NotificationManager.csproj", "{08076F9C-580F-4876-A0A3-55653D093763}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationManager", "NotificationManager\NotificationManager.csproj", "{08076F9C-580F-4876-A0A3-55653D093763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseAccess", "DatabaseAccess\DatabaseAccess.csproj", "{FEEE8495-D4E9-45A5-B5F2-F285896730D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseAccess", "DatabaseAccess\DatabaseAccess.csproj", "{FEEE8495-D4E9-45A5-B5F2-F285896730D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationManager.Tests", "NotificationManager.Tests\NotificationManager.Tests.csproj", "{B3C18982-0838-47E4-99B6-7E8A59737E85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{FEEE8495-D4E9-45A5-B5F2-F285896730D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEEE8495-D4E9-45A5-B5F2-F285896730D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEEE8495-D4E9-45A5-B5F2-F285896730D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C18982-0838-47E4-99B6-7E8A59737E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C18982-0838-47E4-99B6-7E8A59737E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C18982-0838-47E4-99B6-7E8A59737E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C18982-0838-47E4-99B6-7E8A59737E85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

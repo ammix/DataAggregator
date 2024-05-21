@@ -1,29 +1,33 @@
 ﻿using DatabaseAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace NotificationManger
 {
     public class NotificationManager
     {
         readonly AggregatorDbContext dbContext;
-        readonly List<ICustomersOfTenant> customersOfTenants;
+        readonly List<IOrganisation> organisations;
 
         public NotificationManager()
         {
             dbContext = new AggregatorDbContext();
-            customersOfTenants = new List<ICustomersOfTenant>
-                    {
-                        new CustomersOfTenant2(dbContext),
-                        new CustomersOfTenant101(dbContext),
-                        new CustomersOfTenant145(dbContext)
-                    };
+            organisations =
+                    [
+                        new Organisation2(dbContext),
+                        new Organisation101(dbContext),
+                        new Organisation145(dbContext)
+                    ];
         }
 
         public void AddNotifications(int year, int month, int threshold)
         {
-            foreach (var tenant in customersOfTenants)
-                tenant.AddNotifications(year, month, threshold);
+            foreach (var organisation in organisations)
+            {
+                foreach (var customerData in organisation.GetSilentCustomers(year, month, threshold).AsNoTracking())
+                    dbContext.NotificationsBrokers.Add(customerData);
 
-            dbContext.SaveChanges();
+                dbContext.SaveChanges();
+            }
         }
     }
 }

@@ -2,14 +2,14 @@
 
 namespace NotificationManger;
 
-public class CustomersOfTenant145 : CustomersOfTenant
+public class Organisation145 : Organisation
 {
-    public CustomersOfTenant145(AggregatorDbContext dbContext) : base(dbContext)
+    public Organisation145(AggregatorDbContext dbContext) : base(dbContext)
     { }
 
     protected override int OrganisationId => 145;
 
-    protected override IQueryable<NotificationsBroker> GetQuery(int year, int month, int threshold)
+    public override IQueryable<NotificationsBroker> GetSilentCustomers(int year, int month, int threshold)
     {
         return dbContext.Customer145s
             .GroupJoin(
@@ -31,23 +31,13 @@ public class CustomersOfTenant145 : CustomersOfTenant
             .Select(g => new NotificationsBroker
             {
                 Email = g.Key.Email,
-                FirstName = g.Key.Name,
-                LastName = string.Empty,
+                FirstName = NameSplitter.SplitName(g.Key.Name).FirstName,
+                LastName = NameSplitter.SplitName(g.Key.Name).LastName,
+                FinHash = ClientCodeGenerator.GenerateCode(
+                    NameSplitter.SplitName(g.Key.Name).FirstName,
+                    NameSplitter.SplitName(g.Key.Name).LastName,
+                    organisationName)
             })
             .Distinct();
-    }
-
-    protected override NotificationsBroker GetNotificationBroker(NotificationsBroker item, string? orgName)
-    {
-        var firstName = NameSplitter.SplitName(item.FirstName).FirstName;
-        var lastName = NameSplitter.SplitName(item.FirstName).LastName;
-
-        return new NotificationsBroker
-        {
-            Email = item.Email,
-            FirstName = firstName,
-            LastName = lastName,
-            FinHash = ClientCodeGenerator.GenerateCode(firstName, lastName, orgName)
-        };
     }
 }

@@ -20,10 +20,9 @@ namespace DataAggregatorService
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            var notificationManager = new NotificationManager();
-
             app.MapGet("/addNotifications", (HttpContext httpContext) =>
             {
+                var notificationManager = new NotificationManager();
                 notificationManager.AddNotifications(year: 2024, month: 4, threshold: 3);
             })
             .WithName("AddNotifications")
